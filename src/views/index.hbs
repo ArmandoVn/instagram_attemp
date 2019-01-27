@@ -1,0 +1,56 @@
+<!-- Recordemos que aunque este archivo no tiene un cuerpo html
+    se encuentra usando la plantilla definida en el main.hbs que
+    definimos en la configuracion inicial del servidor.
+-->
+
+<div class="card">
+    <div class="card-header bg-gray">
+        <h3 class="card-title text-white">
+            <i class="far fa-image"></i>
+        </h3>
+    </div>
+    <div class="card-body">
+        <!-- enctype: le indica al navegador que recibira un arhcivo pesado. -->
+        <form action="/images" method="POST" enctype="multipart/form-data">
+            <!-- div que empaqueta todo lo necesario para seleccionar un archivo. -->
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" name="image" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon"
+                            required>
+                        <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" name="title" class="from-control" placeholder="Title for the image" required>
+            </div>
+            <div class="form-group">
+                <textarea name="description" id="description" rows="2" class="form-control" placeholder="Image description."
+                    required></textarea>
+            </div>
+            <div class="form-gruop">
+                <button class="btn btn-succes">
+                    <i class="fa fa-upload"></i> Upload Image
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-header bg-dark text-white">
+        <h3><i class="far fa-images"></i> Recent Uploads</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {{#each images}}
+                <div class="col-md-4">
+                    <a href="/images/{{uniqueId}}">
+                        <img src="/public/upload/{{filename}}" alt="" class="w-100 h-100 img-thumbnail">
+                    </a>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
